@@ -12,12 +12,16 @@ Installation
 
     $ pip install redis2hdfs
 
-Getting Started
----------------
+Usage
+-----
 
 ::
 
-    $ redis2hdfs --redis-key myzset --namenode-host namenode.example.com --hdfs-username hdfs --hdfs-path '/tmp/myzset'
+    $ redis2hdfs --redis-key myzset --namenode-host namenode.example.com --hdfs-username hdfs --hdfs-path /tmp/myzset.lzo --compress-format lzo
+
+redis2hdfs could compress file before copy to HDFS, through ``--compress-format`` option. Currently supported compress formats are: LZO.
+
+If you want to use LZO format, you need install `lzop <http://www.lzop.org>`_ first.
 
 Development
 -----------

@@ -3,6 +3,7 @@
 
 from __future__ import absolute_import
 import argparse
+import subprocess
 import tempfile
 
 import redis
@@ -27,6 +28,9 @@ parser.add_argument('--hdfs-username', required=True, help='HDFS username')
 parser.add_argument('--hdfs-path', required=True,
                     help='HDFS file path to store data, '
                          'should be absolute path')
+parser.add_argument('--compress-format',
+                    help='if specified output file will be compressed, '
+                         'supported formats: lzo')
 args = parser.parse_args()
 
 redis_client = redis.StrictRedis(host=args.redis_host,
@@ -37,6 +41,10 @@ hdfs_client = WebHDFS(args.namenode_host, args.webhdfs_port,
 
 
 def copy_from_local_to_hdfs(local_path):
+    if args.compress_format == 'lzo':
+        print 'Compress {} using LZO'.format(local_path)
+        subprocess.call('lzop -f {}'.format(local_path), shell=True)
+        local_path = local_path + '.lzo'
     print 'Copy {} => webhdfs://{}:{}{}'.format(local_path, args.namenode_host,
                                                 args.webhdfs_port,
                                                 args.hdfs_path)
