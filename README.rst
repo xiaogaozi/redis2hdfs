@@ -39,6 +39,10 @@ redis2hdfs could compress file before copy to HDFS, through ``--compress-format`
 
 If you want to use LZO format, you need install `lzop <http://www.lzop.org>`_ first.
 
+redis2hdfs supports [Redis global-style key pattern](http://redis.io/commands/keys), so you can specify ``--redis-key`` like ``*abc*``. redis2hdfs will copy all matched keys' data to HDFS, at this time the ``--hdfs-path`` option will be the parent directory to store data.
+
+For more information, just run ``redis2hdfs --help``.
+
 Development
 -----------
 
@@ -46,3 +50,5 @@ Development
 
     $ mkvirtualenv redis2hdfs
     $ python setup.py develop
+    $ pip install -r tests-req.txt
+    $ nosetests -v

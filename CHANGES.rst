@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 0.0.3
+-------------
+
+- Supported Redis glob-style key pattern
+
 Version 0.0.2
 -------------
 
