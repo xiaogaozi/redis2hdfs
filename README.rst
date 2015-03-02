@@ -21,7 +21,7 @@ redis2hdfs
    :target: https://pypi.python.org/pypi/redis2hdfs
    :alt: License
 
-redis2hdfs is a command line tool to help you export Redis data to HDFS.
+redis2hdfs is a command line tool to help you export Redis data to HDFS. It use `SCAN <http://redis.io/commands/scan>`_ related commands to iterate elements (no ``KEYS``), so you can use in production safely.
 
 NOTE: ensure WebHDFS is enabled.
 
